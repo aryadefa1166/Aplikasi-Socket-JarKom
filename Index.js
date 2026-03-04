@@ -17,8 +17,7 @@ io.on('connection', (socket) => {
     });
 });
 
-
-const PORT = process.env.PORT || 3000; // Menggunakan port dari server atau default 3000
-server.listen(PORT, () => {
-    console.log(`Server berjalan di port ${PORT}`);
+const PORT = process.env.PORT || 3000; 
+server.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server jalan di port ${PORT}`);
 });
