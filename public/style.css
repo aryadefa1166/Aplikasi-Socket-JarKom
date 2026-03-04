@@ -1,76 +1,137 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { 
-    font-family: 'Segoe UI', Tahoma, sans-serif; 
-    background-color: #f0f2f5; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    height: 100vh; 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
 }
 
+body {
+    background: #e5ddd5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* FRAME HP */
 .chat-container {
-    width: 400px;
-    height: 85vh;
-    background: white;
+    width: 320px;               /* Ukuran seperti HP */
+    height: 600px;
+    background: #fff;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     overflow: hidden;
+    border: 8px solid #222;
 }
 
-h2 { 
-    background: #0084ff; 
-    color: white; 
-    padding: 15px; 
-    text-align: center; 
-    font-size: 1.2rem;
+/* HEADER */
+h2 {
+    background: #0084ff;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
 }
 
-#messages { 
-    flex: 1; 
-    padding: 15px; 
-    overflow-y: auto; 
-    list-style-type: none; 
-    background: #e5ddd5;
+/* LOGIN */
+#login {
+    padding: 20px;
+    text-align: center;
+}
+
+#login input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+/* USER LIST */
+.user-list {
+    background: #f7f7f7;
+    padding: 8px;
+    font-size: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-list ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.user-list li {
+    background: #ddd;
+    padding: 3px 8px;
+    border-radius: 12px;
+}
+
+/* CHAT AREA */
+#messages {
+    flex: 1;
+    list-style: none;
+    padding: 10px;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    background: #e5ddd5;
 }
 
-#messages li { 
-    padding: 10px 15px; 
-    background: white; 
-    border-radius: 15px; 
-    max-width: 80%;
-    width: fit-content;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    font-size: 0.9rem;
+/* PESAN UMUM */
+#messages li {
+    max-width: 75%;
+    padding: 8px 12px;
+    border-radius: 15px;
+    font-size: 13px;
+    line-height: 1.4;
+    word-wrap: break-word;
 }
 
-#form { 
-    display: flex; 
-    padding: 10px; 
-    background: #f0f0f0; 
-    gap: 10px;
+/* PESAN ORANG LAIN */
+#messages li {
+    background: white;
+    align-self: flex-start;
 }
 
-#input { 
-    flex: 1; 
-    padding: 10px 15px; 
-    border: 1px solid #ddd; 
-    border-radius: 20px; 
-    outline: none; 
+/* PESAN SENDIRI */
+#messages li.me {
+    background: #0084ff;
+    color: white;
+    align-self: flex-end;
 }
 
-button { 
-    background: #0084ff; 
-    color: white; 
-    border: none; 
-    padding: 8px 15px; 
-    border-radius: 20px; 
-    cursor: pointer; 
+/* FORM INPUT */
+form {
+    display: flex;
+    padding: 10px;
+    background: #f0f0f0;
+    gap: 8px;
+}
+
+#input {
+    flex: 1;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+/* BUTTON */
+button {
+    padding: 8px 15px;
+    border: none;
+    background: #0084ff;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
     font-weight: bold;
 }
 
-button:hover { background: #0073e6; }
+button:hover {
+    background: #0073e6;
+}

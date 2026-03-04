@@ -5,35 +5,35 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="chat-container">
+
+<div class="chat-container">
+
+    <div id="login">
+        <h2>Masukkan Username</h2>
+        <input id="usernameInput" placeholder="Username..." />
+        <button onclick="joinChat()">Masuk</button>
+    </div>
+
+    <div id="chat" style="display:none;">
         <h2>Aplikasi Chat Socket.io</h2>
+
+        <div class="user-list">
+            <h4>User Online:</h4>
+            <ul id="users"></ul>
+        </div>
+
         <ul id="messages"></ul>
-        <form id="form" action="">
+
+        <form id="form">
             <input id="input" autocomplete="off" placeholder="Ketik pesan..." />
             <button>Kirim</button>
         </form>
     </div>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        var socket = io();
-        var form = document.getElementById('form');
-        var input = document.getElementById('input');
+</div>
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            if (input.value) {
-                socket.emit('chat message', input.value);
-                input.value = '';
-            }
-        });
+<script src="/socket.io/socket.io.js"></script>
+<script src="client.js"></script>
 
-        socket.on('chat message', function(msg) {
-            var item = document.createElement('li');
-            item.textContent = msg;
-            document.getElementById('messages').appendChild(item);
-        });
-    </script>
-    <script src="client.js"></script>
 </body>
 </html>

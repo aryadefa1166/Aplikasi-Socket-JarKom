@@ -6,18 +6,58 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-// Memberitahu express untuk mengambil file statis (html/css) dari folder 'public'
 app.use(express.static('public'));
 
+let users = {};
+let messages = [];
+
+function getTime() {
+    const now = new Date();
+    return now.toLocaleTimeString();
+}
+
 io.on('connection', (socket) => {
-    console.log('Ada user konek nih!');
-    
+
+    socket.on('join', (username) => {
+        users[socket.id] = username;
+
+        socket.emit('chat history', messages);
+
+        io.emit('user list', Object.values(users));
+
+        io.emit('chat message', {
+            user: "SYSTEM",
+            text: `${username} bergabung`,
+            time: getTime()
+        });
+    });
+
     socket.on('chat message', (msg) => {
-        io.emit('chat message', msg); // Kirim pesan ke semua orang
+        const messageData = {
+            user: users[socket.id],
+            text: msg,
+            time: getTime()
+        };
+
+        messages.push(messageData);
+        io.emit('chat message', messageData);
+    });
+
+    socket.on('disconnect', () => {
+        const username = users[socket.id];
+        delete users[socket.id];
+
+        io.emit('user list', Object.values(users));
+
+        io.emit('chat message', {
+            user: "SYSTEM",
+            text: `${username} keluar`,
+            time: getTime()
+        });
     });
 });
 
-const PORT = process.env.PORT || 3000; 
-server.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server jalan di port ${PORT}`);
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`Server berjalan di http://localhost:${PORT}`);
 });
