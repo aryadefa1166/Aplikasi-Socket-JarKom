@@ -70,12 +70,20 @@ h2 {
     border-radius: 12px;
 }
 
+/* [PERBAIKAN] Memastikan container chat merespons tinggi maksimal */
+#chat {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
 /* CHAT AREA */
 #messages {
     flex: 1;
     list-style: none;
     padding: 10px;
-    overflow-y: auto;
+    overflow-y: auto; /* Hanya area ini yang discroll */
     display: flex;
     flex-direction: column;
     gap: 8px;

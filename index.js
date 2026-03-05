@@ -43,17 +43,25 @@ io.on('connection', (socket) => {
         io.emit('chat message', messageData);
     });
 
+    // [FITUR BARU] Eksekusi pembersihan chat dengan efisiensi O(1)
+    socket.on('clear chat', () => {
+        messages.length = 0; 
+        io.emit('chat cleared'); 
+    });
+
     socket.on('disconnect', () => {
-        const username = users[socket.id];
-        delete users[socket.id];
+        if (users[socket.id]) { // Validasi ekstra untuk mencegah error jika user belum join
+            const username = users[socket.id];
+            delete users[socket.id];
 
-        io.emit('user list', Object.values(users));
+            io.emit('user list', Object.values(users));
 
-        io.emit('chat message', {
-            user: "SYSTEM",
-            text: `${username} keluar`,
-            time: getTime()
-        });
+            io.emit('chat message', {
+                user: "SYSTEM",
+                text: `${username} keluar`,
+                time: getTime()
+            });
+        }
     });
 });
 
