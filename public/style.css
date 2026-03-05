@@ -2,110 +2,145 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    /* Menggunakan font sistem paling clean dan premium */
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
-    background: #f4f5f7;
+    /* [PERBAIKAN] Gradient Pastel Modern untuk Latar Belakang */
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-/* FRAME CHAT (Minimalist, Soft Shadow) */
+/* FRAME CHAT (Modern, Deep Shadow) */
 .chat-container {
-    width: 360px;
-    height: 650px;
+    width: 380px;
+    height: 680px;
     background: #ffffff;
-    border-radius: 24px;
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+    border-radius: 32px; /* Sudut lebih melengkung ala iOS modern */
+    /* Soft Deep Shadow untuk kesan melayang premium */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
     overflow: hidden;
     border: 1px solid #eaeaea;
+    transition: transform 0.3s ease-out;
 }
 
-/* HEADER */
+/* [EFEK GLASSMORPHISM] Header Frosted Glass */
 h2 {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px); /* Memburamkan konten di belakang saat discroll */
+    -webkit-backdrop-filter: blur(10px);
     color: #1c1c1e;
-    padding: 16px;
+    padding: 18px 20px;
     text-align: center;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     border-bottom: 1px solid #eaeaea;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: sticky; /* Tetap di atas area pesan */
+    top: 0;
+    z-index: 10;
 }
 
-/* TOMBOL HAPUS CHAT (iOS Red) */
+/* TOMBOL HAPUS CHAT (iOS Red, Sleek) */
 h2 button {
     background: #ff3b30;
     color: white;
-    border-radius: 12px;
-    padding: 6px 12px;
+    border-radius: 14px;
+    padding: 7px 14px;
     font-size: 11px;
     font-weight: bold;
     border: none;
     cursor: pointer;
+    box-shadow: 0 4px 10px rgba(255, 59, 48, 0.3);
+    transition: background 0.2s;
 }
 
-/* LOGIN SCREEN */
+h2 button:hover {
+    background: #e6352c;
+}
+
+/* LOGIN SCREEN (Polished) */
 #login {
-    padding: 40px 20px;
+    padding: 60px 30px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+#login h2 {
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom: none;
+    margin-bottom: 10px;
 }
 
 #login input {
     width: 100%;
-    padding: 12px 16px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    border-radius: 12px;
+    padding: 14px 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 14px;
     border: 1px solid #d1d1d6;
     background: #f2f2f7;
     outline: none;
-    transition: 0.2s;
+    transition: 0.2s ease;
+    font-size: 15px;
 }
 
 #login input:focus {
     border-color: #007aff;
     background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
 }
 
 #login button {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
+    font-size: 15px;
 }
 
-/* USER LIST (Modern Tags) */
+/* USER LIST (Modern Tags, Minimalist) */
 .user-list {
     background: #ffffff;
-    padding: 12px 16px;
+    padding: 14px 20px;
     font-size: 12px;
     border-bottom: 1px solid #eaeaea;
     color: #8e8e93;
+}
+
+.user-list h4 {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .user-list ul {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 6px;
+    gap: 8px;
+    margin-top: 10px;
 }
 
 .user-list li {
-    background: #e5e5ea;
+    background: #f2f2f7;
     color: #1c1c1e;
-    padding: 4px 10px;
-    border-radius: 10px;
+    padding: 5px 12px;
+    border-radius: 12px;
     font-weight: 500;
 }
 
-/* AREA CHAT */
+/* AREA CHAT (Clean) */
 #chat {
     display: flex;
     flex-direction: column;
@@ -117,84 +152,95 @@ h2 button {
 #messages {
     flex: 1;
     list-style: none;
-    padding: 16px;
+    padding: 20px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px; /* Jarak antar bubble lebih lega */
 }
 
-/* BUBBLE PESAN UMUM */
+/* [PERBAIKAN GELEMBUNG PESAN] Premium Aesthetic */
 #messages li {
-    max-width: 78%;
-    padding: 10px 14px;
-    border-radius: 18px;
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 20px;
     font-size: 14px;
-    line-height: 1.4;
+    line-height: 1.5;
     word-wrap: break-word;
+    /* Soft shadow pada setiap bubble untuk kedalaman */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
 }
 
-/* BUBBLE ORANG LAIN (Abu-abu ala iMessage) */
+/* BUBBLE ORANG LAIN (Abu-abu Halus, ala iMessage) */
 #messages li {
-    background: #e5e5ea;
+    background: #f2f2f7;
     color: #000;
     align-self: flex-start;
-    border-bottom-left-radius: 4px; /* Aksen ekor bubble */
+    border-bottom-left-radius: 6px; /* Aksen sudut ala gelembung chat */
 }
 
-/* BUBBLE SENDIRI (Biru ala iMessage) */
+/* BUBBLE SENDIRI ( Biru Gradient Premium) */
 #messages li.me {
-    background: #007aff;
+    background: linear-gradient(135deg, #007aff 0%, #00c6ff 100%);
     color: white;
     align-self: flex-end;
-    border-bottom-right-radius: 4px; /* Aksen ekor bubble */
+    border-bottom-right-radius: 6px; /* Aksen sudut ala gelembung chat */
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.2);
 }
 
-/* TAMPILAN WAKTU & NAMA DI BUBBLE */
+/* NAMA & WAKTU DI BUBBLE (Minimalis) */
 #messages li strong {
     display: block;
     font-size: 11px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     opacity: 0.7;
     font-weight: 600;
+    letter-spacing: 0.2px;
 }
 
-/* FORM INPUT BAWAH */
+/* FORM INPUT BAWAH (Integrated, Modern) */
 form {
     display: flex;
-    padding: 12px 16px;
+    padding: 16px 20px;
     background: #ffffff;
     border-top: 1px solid #eaeaea;
-    gap: 10px;
+    gap: 12px;
 }
 
 #input {
     flex: 1;
-    padding: 12px 16px;
-    border-radius: 20px;
+    padding: 14px 20px;
+    border-radius: 24px;
     border: 1px solid #d1d1d6;
     outline: none;
     background: #fafafa;
-    transition: 0.2s;
+    transition: 0.2s ease;
+    font-size: 14px;
 }
 
 #input:focus {
     border-color: #007aff;
     background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.05);
 }
 
-/* TOMBOL KIRIM */
+/* TOMBOL KIRIM (Pill, Modern Blue) */
 button {
-    padding: 0 20px;
+    padding: 0 24px;
     border: none;
     background: #007aff;
     color: white;
-    border-radius: 20px;
+    border-radius: 24px;
     cursor: pointer;
     font-weight: bold;
-    transition: 0.2s;
+    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 4px 10px rgba(0, 122, 255, 0.2);
 }
 
 button:hover {
     background: #005bb5;
+}
+
+button:active {
+    transform: scale(0.96); /* Efek penekanan tombol yang memuaskan */
 }
