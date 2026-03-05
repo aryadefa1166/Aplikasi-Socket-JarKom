@@ -13,7 +13,12 @@ let messages = [];
 
 function getTime() {
     const now = new Date();
-    return now.toLocaleTimeString();
+    return now.toLocaleTimeString('id-ID', {
+        timeZone: 'Asia/Jakarta',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    });
 }
 
 io.on('connection', (socket) => {
@@ -43,14 +48,13 @@ io.on('connection', (socket) => {
         io.emit('chat message', messageData);
     });
 
-    // [FITUR BARU] Eksekusi pembersihan chat dengan efisiensi O(1)
     socket.on('clear chat', () => {
         messages.length = 0; 
         io.emit('chat cleared'); 
     });
 
     socket.on('disconnect', () => {
-        if (users[socket.id]) { // Validasi ekstra untuk mencegah error jika user belum join
+        if (users[socket.id]) { 
             const username = users[socket.id];
             delete users[socket.id];
 

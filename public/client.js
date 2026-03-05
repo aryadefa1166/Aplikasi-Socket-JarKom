@@ -7,7 +7,6 @@ function joinChat() {
     if (username.trim() !== "") {
         socket.emit('join', username);
         document.getElementById('login').style.display = "none";
-        // Ubah ke flex agar layout responsif CSS tidak hancur
         document.getElementById('chat').style.display = "flex"; 
     }
 }
@@ -35,7 +34,6 @@ socket.on('chat message', function(data) {
     item.innerHTML = `<strong>[${data.time}] ${data.user}:</strong> ${data.text}`;
     messages.appendChild(item);
 
-    // Perbaikan auto-scroll khusus untuk area pesan
     messages.scrollTop = messages.scrollHeight;
 });
 
@@ -57,14 +55,14 @@ socket.on('user list', function(users) {
     });
 });
 
-// [FITUR BARU] Fungsi Hapus Chat
+// Fungsi Hapus Chat
 function clearChat() {
     if (confirm("Apakah Anda yakin ingin menghapus chat untuk SEMUA ORANG?")) {
         socket.emit('clear chat');
     }
 }
 
-// [FITUR BARU] Menerima perintah hapus dari server
+// Menerima perintah hapus dari server
 socket.on('chat cleared', function() {
     messages.innerHTML = '';
 });
